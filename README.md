@@ -73,7 +73,20 @@ After this we will download guest additon of virtualbox using device options and
 ![image](https://github.com/user-attachments/assets/7c88e902-4644-4f06-a192-864e572175e2)
 
 
-After installation, open Control Panel and navigate to Network and Internet → Network and Sharing Center, then click Change adapter settings. You’ll see two adapters—right-click the one without Internet access, select Status → Details, and confirm it has an APIPA address (169.x.x.x). Close the details window, right-click that adapter again, choose Properties, double-click Internet Protocol Version 4 (TCP/IPv4), select “Use the following IP address,” and enter the address from your network diagram. Click OK to save, then rename this adapter to Lab-Internal and the other to Lab-External.
+After installation, open Control Panel and navigate to Network and Internet → Network and Sharing Center, then click Change adapter settings. 
+![image](https://github.com/user-attachments/assets/b0b76319-85ed-4483-b236-3f4125a1d927)
+You’ll see two adapters—right-click the one without Internet access, select Status → Details, and confirm it has an APIPA address (169.x.x.x).
+![image](https://github.com/user-attachments/assets/dc8d48f8-ea0a-457b-a76e-8283b2ff3fdc)
+![image](https://github.com/user-attachments/assets/ec48c245-12f8-4e35-83da-0cdc3211f237)
 
+Close the details window, choose Properties, double-click Internet Protocol Version 4 (TCP/IPv4), select “Use the following IP address,” and enter the address from your network diagram. Click OK to save, then rename this adapter to Lab-Internal and the other to Lab-External.
+![image](https://github.com/user-attachments/assets/bdf89300-09b1-49ba-b225-6b087daf53f8)
+![image](https://github.com/user-attachments/assets/4b8aadb2-886f-462f-820b-dce3f1a745c4)
 
+Next we will go on Search and look for search advanced system properties and  then we  go onto computer name and then change and change it to DC and then press ok and then restart.
+![image](https://github.com/user-attachments/assets/9160938a-01c2-432b-a055-a2016978d8fc)
+
+## Downloading Active Directory
+After signing back in, open Server Manager and click Add Roles and Features. Role-Based or feature-based installation select a server from the server pool 'DC Keep clicking Next until you reach the server roles list, check Active Directory Domain Services, click Add Features, then continue through the wizard and click Install. When installation finishes, close the wizard, click the flag icon next to Tools, choose Promote this server to a domain controller, select Add a new forest named lablocal.com, uncheck DNS delegation, and click Install. The server will restart automatically.
+![image](https://github.com/user-attachments/assets/84d65a63-abfe-4000-9ac0-876c5abfd638)
 
