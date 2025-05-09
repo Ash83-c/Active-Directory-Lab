@@ -107,17 +107,19 @@ Next we will be downloading RAT/NAT and this will act as a gateway for our inter
 ![image](https://github.com/user-attachments/assets/0a966608-55d0-4a70-a45e-e2b40d4f3d7c)
 
 
-Go to tools on server manager and then on routing and remote services. Once we are on we right click and press configure and the we right click new som and we should see option for routing with nat and we will choose that and then will will use the public lab external ip interface for the nat and press next until we get to the end and we see a green arrow.
+Go to tools on server manager and then on routing and remote services. Once we are on we right click and press configure and the we right click new som and we should see option for routing with nat and we will choose that and then will will use the public lab external ip interface for the nat and press next until we get to the end refresh by rigth clicking and wes should  see a green arrow.
+
 ![image](https://github.com/user-attachments/assets/55608d7d-48ee-49cc-9261-148ed0b8b3e9)
 ![image](https://github.com/user-attachments/assets/769e69e9-e53b-4b3c-9ed6-280985a333f4)
 ![image](https://github.com/user-attachments/assets/0bbc9623-8c41-4bd4-b9ff-06781378949b)
+
 NOTE: If you dont see our networks that we configured, restart the routing and remote access wizard:
 ![image](https://github.com/user-attachments/assets/ce52a972-e175-43d9-8d82-49ba05cb29d2)
 ![image](https://github.com/user-attachments/assets/7e1c73d9-9000-46e5-b3a4-bd197a5ca451)
 
 Use this public interface to connect to the internet > click on our adaptor lab external then next:
 ![image](https://github.com/user-attachments/assets/9d45a0a9-9297-446d-9a28-04c81e595cba)
-After we finish we should see a green arrow.
+After we finish refresh by right clickingand we should see a green arrow.
 ![image](https://github.com/user-attachments/assets/e07d79be-8f57-402b-b1c1-0f194aaee65e)
 
 
@@ -193,5 +195,106 @@ Once the DHCP role is installed, close the wizard and open Tools , DHCP. Right-c
 ![image](https://github.com/user-attachments/assets/3e166731-6f99-493c-9822-c76edec44e5a)
 ![image](https://github.com/user-attachments/assets/0b11324b-f9e7-418e-8728-2008833e61cf)
 ![image](https://github.com/user-attachments/assets/784d7293-7dc6-4130-a2da-85bfd0762a6d)
+![image](https://github.com/user-attachments/assets/ed7ed1fc-3573-4eae-b24d-7d5a029cb11d)
+We will not be setting any Exlcusions and we can leave the lease on 8 days.
+![image](https://github.com/user-attachments/assets/7b98bee4-5fa2-4f85-b3c4-465c74b2720e)
+![image](https://github.com/user-attachments/assets/2af6668a-471d-4265-a84e-9089329522ff)
+![image](https://github.com/user-attachments/assets/6f720f4c-24ed-4ec4-b0d2-3e9dba292fca)
+Skip Win Servers and press Activate now and finish.
+![image](https://github.com/user-attachments/assets/727d0128-1aac-4376-97cd-1202183f2cc0)
+Right click on the server and refresh and you should see a Green Tick.
+![image](https://github.com/user-attachments/assets/47c95431-e3c3-49a0-bb04-201b4cf6bba9)
+
+## Setting Up the Windows 10 Client VM
+
+In VirtualBox, create a new VM named Client, then attach your Windows 10 ISO and skip the unattended-installation options. Assign the same hardware profile as your servers—such as 4 GB of RAM, 2 CPU cores, and a 50 GB virtual disk—to keep consistency across the lab. 
+![image](https://github.com/user-attachments/assets/198e1541-98de-49a5-8785-c4af13a04f42)
+
+
+Once the VM is created, right-click Client, choose Settings, go to the Network tab, and switch the network adapter from NAT to Internal Network so the client resides on your isolated lab network.
+![image](https://github.com/user-attachments/assets/160b35ce-55a4-49cf-83bc-4dd86f20be34)
+
+After starting up the Win10 Client VM and going through the installation process which will be the similar to the DC and DHCP server.
+![image](https://github.com/user-attachments/assets/0ffc4c8d-9e1c-43d9-8f08-3462a2043e38)
+Once it restarts, make sure to use the following options. 'I dont have internet' 'Continue with limited setup
+![image](https://github.com/user-attachments/assets/d300b013-1266-41db-b84b-8dc145da4686)
+![image](https://github.com/user-attachments/assets/1188a355-21c8-408c-bd48-2f9f3ee50bd1)
+Create any username and password will be using User and the same password.  Put in any answer for the security questions and select not now.
+![image](https://github.com/user-attachments/assets/9743ca7e-0076-4c6b-a2fe-2aa9c30f2875)
+![image](https://github.com/user-attachments/assets/50ee6651-fa3c-413b-97c5-09ebc14bcdfe)
+
+
+
+After signing in to the client VM, open Command Prompt and run ipconfig to confirm you’ve received an IP address (it should be 172.16.0.100) from the DHCP server; then run ping lablocal.com to verify DNS resolution and domain connectivity. 
+![image](https://github.com/user-attachments/assets/04080306-e669-42d1-9a61-b1eff708a51e)
+
+
+On the DHCP server, open the DHCP console and check the IPv4 Leases list to ensure the client’s lease is registered.
+![image](https://github.com/user-attachments/assets/9aaaa1f6-b1cd-4ae4-b16e-e61917ff9487)
+
+## Joining Client to Domain
+Next we will go on Search and look for search advanced system properties and  then we  go onto computer name and then change and change the it to Client and then we will add it the domain by adding the domain name lablocal.com.
+![image](https://github.com/user-attachments/assets/56d923fc-9894-4667-8dc8-e75a86eef2a7)
+Use Domain Admin Account to authorise domain joining. Then restart.
+![image](https://github.com/user-attachments/assets/e4b97d2d-ca87-453f-8759-a0d8b41a3ea0)
+
+## Setting up Group polocies on DC
+
+# Setting Shared Folder
+
+First, create a folder on the DC Local Disk called shared. Right-click it, choose Properties, then go to the Sharing tab ,Advanced Sharing. Remove Everyone, add Domain Users, and grant them Read permission and aplly and press ok. Next, switch to the Security tab, add Domain Users, and give Read & Execute rights. Copy the UNC path (e.g. \\DC\shared)—you’ll need this for the GPO.
+![image](https://github.com/user-attachments/assets/221630dd-6bbe-4766-b853-19e030bcc87e)
+![image](https://github.com/user-attachments/assets/f83929e6-2c64-4f9e-90ce-84ad7762fbab)
+![image](https://github.com/user-attachments/assets/770c4a6d-6392-4667-ba01-080e55f8d320)
+![image](https://github.com/user-attachments/assets/5a45a06b-4ca4-4841-9677-aac1f62eac82)
+![image](https://github.com/user-attachments/assets/4f3b65f1-9f3f-44ba-8b26-85ffab685171)
+![image](https://github.com/user-attachments/assets/0682dfbe-a1d6-4fbc-b381-9759d9d4d620)
+
+
+Open Server Manager → Tools → Group Policy Management, navigate to your Users OU, right-click it and select Link an Existing GPO → name it Map-Shared-Drive. Edit the GPO:
+
+User Configuration → Preferences → Windows Settings → Drive Maps
+
+Right-click Drive Maps → New → Mapped Drive
+Action: Create
+Location: \\DC\shared
+Drive Letter: S:
+Reconnect
+Show this drive
+Save and close.
+
+# Restrict Registry Editing Tools
+
+Create & link a GPO named Restrict-Registry. Edit it:
+
+User Configuration → Policies → Administrative Templates → System
+
+Double-click Prevent access to registry editing tools → Enabled
+
+Click Apply → OK.
+
+# Restrict Command Prompt
+
+Create & link a GPO named Restrict-CMD. Right-click it, choose Enforced, then Edit:
+
+User Configuration → Policies → Administrative Templates → System
+
+Double-click Prevent access to the command prompt → Enabled
+
+Under “Disable the command prompt script processing also?”, select Yes
+
+Click Apply → OK.
+
+# Restrict Control Panel & Settings
+
+Create & link a GPO named Restrict-Control-Panel. Edit it:
+
+User Configuration → Policies → Administrative Templates → Control Panel
+
+Double-click Prohibit access to Control Panel and PC settings → Enabled
+
+Click Apply → OK.
+
+
 
 
