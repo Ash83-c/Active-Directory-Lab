@@ -87,6 +87,37 @@ Next we will go on Search and look for search advanced system properties and  th
 ![image](https://github.com/user-attachments/assets/9160938a-01c2-432b-a055-a2016978d8fc)
 
 ## Downloading Active Directory
-After signing back in, open Server Manager and click Add Roles and Features. Role-Based or feature-based installation select a server from the server pool 'DC Keep clicking Next until you reach the server roles list, check Active Directory Domain Services, click Add Features, then continue through the wizard and click Install. When installation finishes, close the wizard, click the flag icon next to Tools, choose Promote this server to a domain controller, select Add a new forest named lablocal.com, uncheck DNS delegation, and click Install. The server will restart automatically.
+After signing back in, open Server Manager and click Add Roles and Features. Role-Based or feature-based installation select a server from the server pool 'DC Keep clicking Next until you reach the server roles list, check Active Directory Domain Services, click Add Features, then continue through the wizard and click Install. 
 ![image](https://github.com/user-attachments/assets/84d65a63-abfe-4000-9ac0-876c5abfd638)
+![image](https://github.com/user-attachments/assets/26e81f0e-be22-4cbd-a58b-f7520117af41)
+![image](https://github.com/user-attachments/assets/3b770d80-2cc1-4eac-b504-4c3793097ff1)
+
+
+When installation finishes, close the wizard, click the flag icon next to Manage, choose Promote this server to a domain controller, select Add a new forest named lablocal.com, uncheck DNS delegation, and click Install. The server will restart automatically.
+![image](https://github.com/user-attachments/assets/ee1f42b9-c2f6-4fb9-a7be-5dd29124aba2)
+![image](https://github.com/user-attachments/assets/2dec8288-79d5-4e8c-b8cd-fea36d2f2939)
+
+## Downloading RAS/NAT
+
+Next we will be downloading RAT/NAT and this will act as a gateway for our internal network. We will go to server manager and add roles and sevices lick 'Role-based or feature-based installation and Select our server from the server pool  And we will go next and till we get to services and we will chose remote access services and we will press next till we get to the we to the options and wil choose routing choose add options and press next until we get to install. After the installation completes we can close it.  
+![image](https://github.com/user-attachments/assets/7e88c25b-fd9b-4841-a907-6842c2426c42)
+![image](https://github.com/user-attachments/assets/070f7cba-a12a-48ce-a41b-bc9fda1db567)
+![image](https://github.com/user-attachments/assets/ac0f5b0c-237a-40fd-8f02-9284ebac29e5)
+![image](https://github.com/user-attachments/assets/68375340-fef0-4a43-80a3-cfd23a590e79)
+![image](https://github.com/user-attachments/assets/0a966608-55d0-4a70-a45e-e2b40d4f3d7c)
+
+
+Go to tools on server manager and then on routing and remote services. Once we are on we right click and press configure and the we right click new som and we should see option for routing with nat and we will choose that and then will will use the public lab external ip interface for the nat and press next until we get to the end and we see a green arrow.
+![image](https://github.com/user-attachments/assets/55608d7d-48ee-49cc-9261-148ed0b8b3e9)
+![image](https://github.com/user-attachments/assets/769e69e9-e53b-4b3c-9ed6-280985a333f4)
+![image](https://github.com/user-attachments/assets/0bbc9623-8c41-4bd4-b9ff-06781378949b)
+NOTE: If you dont see our networks that we configured, restart the routing and remote access wizard:
+![image](https://github.com/user-attachments/assets/ce52a972-e175-43d9-8d82-49ba05cb29d2)
+![image](https://github.com/user-attachments/assets/7e1c73d9-9000-46e5-b3a4-bd197a5ca451)
+
+Use this public interface to connect to the internet > click on our adaptor lab external then next:
+![image](https://github.com/user-attachments/assets/9d45a0a9-9297-446d-9a28-04c81e595cba)
+After we finish we should see a green arrow.
+![image](https://github.com/user-attachments/assets/b04db688-fd34-4c18-b7f9-6ba19dbf603f)
+
 
