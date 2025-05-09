@@ -304,7 +304,7 @@ Click Apply → OK.
 
 
 
-# Restrict Control Panel & Settings
+### Restrict Control Panel & Settings
 
 Create & link a GPO named Restrict-Control-Panel and also right click and enforce and then Edit it:
 ![image](https://github.com/user-attachments/assets/4eb1fc35-acad-43ff-adcc-4d9028b22f73)
@@ -318,12 +318,26 @@ Click Apply → OK.
 ![image](https://github.com/user-attachments/assets/e262a383-3a3a-4f05-9d3a-6409168d3d95)
 
 We should have Four Group Policys overall
+![image](https://github.com/user-attachments/assets/a8aed045-c1b5-4266-909b-81b7d5bc7464)
+
 ## Checking If Group Policies have Applied
 
 Go on the Client and Sign in with User Account in my example I will sign in with lsmith. We will go to cmd and then type gpupdate /force then we restart and check each policy to see if works.
 ![image](https://github.com/user-attachments/assets/402ec3c5-fa3f-4db0-a9fb-0640cad959fe)
 
 ![image](https://github.com/user-attachments/assets/881cae28-6b85-436e-9d83-c345db182664)
+
+Shared Folder
+![image](https://github.com/user-attachments/assets/3a8d6828-c2b9-4c25-a55b-00076aaea4ad)
+
+Cmd
+![image](https://github.com/user-attachments/assets/0db5cdfe-a40d-4f93-b8c0-555cf1b3a7f0)
+
+Registry
+![image](https://github.com/user-attachments/assets/4728ad42-944f-4af2-81f9-ae4d33190e23)
+
+Control Panel
+![image](https://github.com/user-attachments/assets/3be270ef-4a77-4196-a416-8050c79251c4)
 
 
 
