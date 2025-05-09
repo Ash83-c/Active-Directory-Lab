@@ -328,16 +328,18 @@ Go on the Client and Sign in with User Account in my example I will sign in with
 ![image](https://github.com/user-attachments/assets/881cae28-6b85-436e-9d83-c345db182664)
 
 Shared Folder
-![image](https://github.com/user-attachments/assets/3a8d6828-c2b9-4c25-a55b-00076aaea4ad)
+![image](https://github.com/user-attachments/assets/a72f9c5f-50f1-40e7-a23a-915a48da953b)
+
+
 
 Cmd
-![image](https://github.com/user-attachments/assets/0db5cdfe-a40d-4f93-b8c0-555cf1b3a7f0)
+
 
 Registry
-![image](https://github.com/user-attachments/assets/4728ad42-944f-4af2-81f9-ae4d33190e23)
+
 
 Control Panel
-![image](https://github.com/user-attachments/assets/3be270ef-4a77-4196-a416-8050c79251c4)
+
 
 
 
