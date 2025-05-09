@@ -73,7 +73,7 @@ After this we will download guest additon of virtualbox using device options and
 ![image](https://github.com/user-attachments/assets/7c88e902-4644-4f06-a192-864e572175e2)
 
 
-After installation, open Control Panel and navigate to Network and Internet → Network and Sharing Center, then click Change adapter settings. 
+After installation, open Control Panel and navigate to Network and Internet,Network and Sharing Center, then click Change adapter settings. 
 ![image](https://github.com/user-attachments/assets/b0b76319-85ed-4483-b236-3f4125a1d927)
 You’ll see two adapters—right-click the one without Internet access, select Status → Details, and confirm it has an APIPA address (169.x.x.x).
 ![image](https://github.com/user-attachments/assets/dc8d48f8-ea0a-457b-a76e-8283b2ff3fdc)
@@ -118,6 +118,80 @@ NOTE: If you dont see our networks that we configured, restart the routing and r
 Use this public interface to connect to the internet > click on our adaptor lab external then next:
 ![image](https://github.com/user-attachments/assets/9d45a0a9-9297-446d-9a28-04c81e595cba)
 After we finish we should see a green arrow.
-![image](https://github.com/user-attachments/assets/b04db688-fd34-4c18-b7f9-6ba19dbf603f)
+![image](https://github.com/user-attachments/assets/e07d79be-8f57-402b-b1c1-0f194aaee65e)
+
+
+## Creating Dedicated Admin account
+
+We will need to authorise the dhcp server to so this we will need an admin account with domain admin rights. We we can go active directory users and computers by clicking the tool option on server manager and then going to our domain lablocal.com and then we can right click and create a new ou we will name it _ADMIN and we uncheck the accidental deletion option. 
+![image](https://github.com/user-attachments/assets/ef5a8923-b95e-4107-9009-25c996586689)
+![image](https://github.com/user-attachments/assets/f1bf0920-f439-42c0-95e2-4bb8afbe3660)
+
+
+Then press next and the ou will be created. 
+![image](https://github.com/user-attachments/assets/f5cb4937-d1b4-4b8d-bc9f-0388f94a40ca)
+
+
+The we can right click on it on create new and there will option for new user. We will name our user Ahmed Shego and then will use the name username a-ashego this is similar to what is used in real life and we will go to next. 
+![image](https://github.com/user-attachments/assets/3efd511a-3b64-4be2-9482-95c48c4a1620)
+![image](https://github.com/user-attachments/assets/bb3ec637-fe51-4f05-a8a4-959f93e3834f)
+
+
+Then will use the option password never expries and  deseleect the option change password at next login and then after we created the user we will right click onto properties and then onto members of tab  and then we will search for domain admin and then add them to that group this will allow us to use admins rights.
+
+![image](https://github.com/user-attachments/assets/613d3e8b-f1d4-4907-9913-9afaa1d32fa2)
+![image](https://github.com/user-attachments/assets/488c64ba-6e14-4816-b46d-7bda70650038)
+Then press ok
+![image](https://github.com/user-attachments/assets/dcc5b4c2-c619-463d-9d8a-b76cae700490)
+
+Log in with the new admin Account
+![image](https://github.com/user-attachments/assets/10c9ff08-8155-45bf-9511-d620a2244594)
+
+## Executing Powershell script on DC
+Make sure you’re signed in as Domain Admin.
+Copy your PowerShell script and notes.txt from your desktop onto the DC’s desktop, then launch PowerShell ISE “Run as Administrator.” 
+![image](https://github.com/user-attachments/assets/400ab623-a60f-4a65-8ca9-4fd11bca9f71)
+![image](https://github.com/user-attachments/assets/e7d58c09-deb8-4445-804a-20330db3284c)
+![image](https://github.com/user-attachments/assets/bbc1c697-3664-435f-9bc6-f44c60f9f60d)
+Use cd to navigate to the folder containing your script and notes.txt, open the script in ISE, and press Run. 
+![image](https://github.com/user-attachments/assets/e6d3c86f-6a2c-4033-94eb-2141dfef2240)
+
+
+
+
+When it finishes, open Active Directory Users and Computers, locate the target OU, and verify that all 50 users have been created.
+![image](https://github.com/user-attachments/assets/44d10946-236d-4fc6-bab8-c8b6a6c72bc6)
+
+## Setting up DHCP server 
+
+Next we will clone our template with the same settings we used for the DC sever but naming it DHCP.
+![image](https://github.com/user-attachments/assets/059a209c-f9cc-49e5-b940-419820457d2a)
+
+Next we will right click and go on to settings and then onto network and change our adaptor from nat to internal and theN  press ok.
+![image](https://github.com/user-attachments/assets/3a05b6bb-4f2c-433d-bfb4-bc2065c11b13)
+After going through installtion process which will be the same as the DC server we will also use the same password for the administrator
+![image](https://github.com/user-attachments/assets/81729613-c71c-48ae-a6c0-c716fcb33f53)
+
+After installation, open Control Panel and navigate to Network and Internet,Network and Sharing Center, then click Change adapter settings. Right click on the adaptor choose Properties, double-click Internet Protocol Version 4 (TCP/IPv4), select “Use the following IP address,” and enter the address from your network diagram. Click OK to save.
+![image](https://github.com/user-attachments/assets/c1ec2236-2705-4ba2-b6e9-9d084c20fb92)
+
+Next we will go on Search and look for search advanced system properties and  then we  go onto computer name and then change and change the it to DHCP and then we will add it the domain by adding the domain name lablocal.com.
+![image](https://github.com/user-attachments/assets/22a4175f-9d32-4dd1-9cc4-0b70b0dc2776)
+
+
+after pressing ok it will ask for the domain admin account and we will use the admin we created and if we are successful it should say welcome lablocal.com domain after this we it should restart.
+![image](https://github.com/user-attachments/assets/b67e2de6-698e-4b48-b6f6-7f0c657ae428)
+![image](https://github.com/user-attachments/assets/33ca614a-fbb5-480f-98cf-d36e79cebdfc)
+
+Just like we did before, we will go to Server Manager Dashboard , Add roles and features , Role-based or feature-based installation , Select our server , Select DHCP and add features and then install.
+![image](https://github.com/user-attachments/assets/bc609eae-8698-4250-b4f1-c5fb404ce072)
+![image](https://github.com/user-attachments/assets/a2d10a65-47c0-4577-865a-774d5f7e3b71)
+
+
+Once the DHCP role is installed, close the wizard and open Tools , DHCP. Right-click your server’s icon and choose Authorize. Then expand IPv4, right-click it, and select New Scope. Name it (for example, “172.16.0.100-200”) and click Next through the introductory screens until you reach the IP address range page. Enter 172.16.0.100 to 172.16.0.200 with a /24 subnet mask, then click Next. When prompted for the default gateway, enter your domain controller’s IP (172.16.0.10). Continue clicking Next, choose Activate this scope now, and finish. The DHCP service will start and your scope will be live
+![image](https://github.com/user-attachments/assets/52c7e05e-2484-4676-8fcf-fb0fb2c96136)
+![image](https://github.com/user-attachments/assets/3e166731-6f99-493c-9822-c76edec44e5a)
+![image](https://github.com/user-attachments/assets/0b11324b-f9e7-418e-8728-2008833e61cf)
+![image](https://github.com/user-attachments/assets/784d7293-7dc6-4130-a2da-85bfd0762a6d)
 
 
