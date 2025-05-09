@@ -240,21 +240,26 @@ Use Domain Admin Account to authorise domain joining. Then restart.
 
 ## Setting up Group polocies on DC
 
-# Setting Shared Folder
+### Setting Shared Folder
 
-First, create a folder on the DC Local Disk called shared. Right-click it, choose Properties, then go to the Sharing tab ,Advanced Sharing. Remove Everyone, add Domain Users, and grant them Read permission and aplly and press ok. Next, switch to the Security tab, add Domain Users, and give Read & Execute rights. Copy the UNC path (e.g. \\DC\shared)—you’ll need this for the GPO.
+First, create a folder on the DC Local Disk called shared. Right-click it, choose Properties, then go to the Sharing tab ,Advanced Sharing. Remove Everyone, add Domain Users, and grant them Read permission and aplly and press ok.
 ![image](https://github.com/user-attachments/assets/221630dd-6bbe-4766-b853-19e030bcc87e)
 ![image](https://github.com/user-attachments/assets/f83929e6-2c64-4f9e-90ce-84ad7762fbab)
 ![image](https://github.com/user-attachments/assets/770c4a6d-6392-4667-ba01-080e55f8d320)
 ![image](https://github.com/user-attachments/assets/5a45a06b-4ca4-4841-9677-aac1f62eac82)
 ![image](https://github.com/user-attachments/assets/4f3b65f1-9f3f-44ba-8b26-85ffab685171)
 ![image](https://github.com/user-attachments/assets/0682dfbe-a1d6-4fbc-b381-9759d9d4d620)
+ Next, switch to the Security tab, add Domain Users, and give Read & Execute rightsand then apply and press ok. Copy the UNC path (e.g. \\DC\Shared)—you’ll need this for the GPO.
+ ![image](https://github.com/user-attachments/assets/8a172966-c670-45d9-bb0d-ce7cff284959)
+![image](https://github.com/user-attachments/assets/793d2f1c-192a-4cc3-9e25-f9ed775add07)
 
+Open Server Manager → Tools → Group Policy Management, navigate to your Users OU, right-click it and select Link an Existing GPO → name it Shared-Drive. Edit the GPO:
+![image](https://github.com/user-attachments/assets/c59e5804-ef75-448b-90f7-8a5f270f27a6)
+![image](https://github.com/user-attachments/assets/37770d75-9bfe-444e-9312-f140d4cc8f19)
+![image](https://github.com/user-attachments/assets/c4c79b47-53d2-40b1-b32e-a05e2ff1fcd5)
+![image](https://github.com/user-attachments/assets/50ea333f-a5e6-46e7-9f95-f82e80adf294)
 
-Open Server Manager → Tools → Group Policy Management, navigate to your Users OU, right-click it and select Link an Existing GPO → name it Map-Shared-Drive. Edit the GPO:
-
-User Configuration → Preferences → Windows Settings → Drive Maps
-
+User Configuration , Preferences , Windows Settings , Drive Maps
 Right-click Drive Maps → New → Mapped Drive
 Action: Create
 Location: \\DC\shared
@@ -262,39 +267,63 @@ Drive Letter: S:
 Reconnect
 Show this drive
 Save and close.
+![image](https://github.com/user-attachments/assets/25c1327d-bd7a-423d-98b7-c9ddb8a00045)
 
-# Restrict Registry Editing Tools
 
-Create & link a GPO named Restrict-Registry. Edit it:
+### Restrict Registry Editing Tools
 
-User Configuration → Policies → Administrative Templates → System
+Create & link a GPO named Restrict-Registry. Make sure to right click and choose enforced.
+![image](https://github.com/user-attachments/assets/038e7297-e720-4b6e-a5b7-2eef159e5563)
+![image](https://github.com/user-attachments/assets/996038d6-f491-43ca-9cb3-19eaca488da9)
+
+Edit it: User Configuration → Policies → Administrative Templates → System
+![image](https://github.com/user-attachments/assets/1ade6db0-5444-4622-aee1-9068dc6f5669)
 
 Double-click Prevent access to registry editing tools → Enabled
+Click Apply and then OK.
+![image](https://github.com/user-attachments/assets/463e44f4-3862-4c26-b1f4-250f116cef1c)
 
-Click Apply → OK.
 
-# Restrict Command Prompt
+
+### Restrict Command Prompt
 
 Create & link a GPO named Restrict-CMD. Right-click it, choose Enforced, then Edit:
+![image](https://github.com/user-attachments/assets/975848f2-a1ca-4f76-8fdb-5247fd245ecc)
+![image](https://github.com/user-attachments/assets/819ba92b-30c9-49ff-8f6d-c663eca62fda)
+
 
 User Configuration → Policies → Administrative Templates → System
+![image](https://github.com/user-attachments/assets/e6271b3f-fc6f-45a2-9d29-f90f2d3733f0)
 
 Double-click Prevent access to the command prompt → Enabled
 
 Under “Disable the command prompt script processing also?”, select Yes
 
 Click Apply → OK.
+![image](https://github.com/user-attachments/assets/f17931fc-26b5-4819-8d36-fd01e34cfa64)
+
+
 
 # Restrict Control Panel & Settings
 
-Create & link a GPO named Restrict-Control-Panel. Edit it:
+Create & link a GPO named Restrict-Control-Panel and also right click and enforce and then Edit it:
+![image](https://github.com/user-attachments/assets/4eb1fc35-acad-43ff-adcc-4d9028b22f73)
+![image](https://github.com/user-attachments/assets/c6808309-1ea6-4b8b-9a70-2ee31001249a)
 
 User Configuration → Policies → Administrative Templates → Control Panel
+![image](https://github.com/user-attachments/assets/197c5391-3c68-4f28-81d0-48193c93b857)
 
 Double-click Prohibit access to Control Panel and PC settings → Enabled
-
 Click Apply → OK.
+![image](https://github.com/user-attachments/assets/e262a383-3a3a-4f05-9d3a-6409168d3d95)
 
+We should have Four Group Policys overall
+## Checking If Group Policies have Applied
+
+Go on the Client and Sign in with User Account in my example I will sign in with lsmith. We will go to cmd and then type gpupdate /force then we restart and check each policy to see if works.
+![image](https://github.com/user-attachments/assets/402ec3c5-fa3f-4db0-a9fb-0640cad959fe)
+
+![image](https://github.com/user-attachments/assets/881cae28-6b85-436e-9d83-c345db182664)
 
 
 
