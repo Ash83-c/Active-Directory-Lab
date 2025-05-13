@@ -33,7 +33,8 @@ We will go to settings, update and security, and make sure to check for any upda
 
 After this, we will run Sysprep using the options OOBE (Out-of-Box Experience) and "Generalise," followed by a shutdown.
 
-![image](https://github.com/user-attachments/assets/67c79430-b446-45bc-af0d-b65a709b5c90)
+![image](https://github.com/user-attachments/assets/ffa8d7c0-e1cd-4eb0-9510-5312e85b2620)
+
 
 
 ## Creating DC (Domain Controller)
