@@ -4,7 +4,7 @@
 https://youtu.be/O4TTVB2MhA8?si=77EDyMfrZuYBryt5
 
 ##  Description
-In this lab we will build a Sysprepped golden image in VirtualBox and deploy it as a Domain Controller and DHCP server on a 172.16.0.0/24 network. We’ll join a Windows 10 client, provision 50 users via PowerShell, and enforce three GPOs for home-folder mapping, CMD restriction, and Control Panel lockdown.
+In this lab we will build a Sysprepped golden image in VirtualBox and deploy it as a Domain Controller and DHCP server on a 172.16.0.0/24 network. We’ll join a Windows 10 client, provision 50 users via PowerShell, and enforce four GPOs for home-folder mapping, CMD restriction, Registry Editing and Control Panel lockdown.
 
 ##  Languages and Utilities Used
 PowerShell
